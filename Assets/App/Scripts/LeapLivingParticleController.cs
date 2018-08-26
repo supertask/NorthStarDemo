@@ -13,7 +13,7 @@ public class LeapLivingParticleController : MonoBehaviour {
 	}
 	
 	void Update () {
-        setAffectorPosition();
+        this.setAffectorPosition();
     }
 
     private void setAffectorPosition()
@@ -31,6 +31,7 @@ public class LeapLivingParticleController : MonoBehaviour {
             else if (Input.GetKey(KeyCode.A)) {
                 this.affector.position += new Vector3(-0.02f, 0, 0);
             }
+            this.psr.material.SetVector("_Affector", this.affector.position);
             /*
             else if (Input.GetKey(KeyCode.J)) {
                 if (Input.GetKey(KeyCode.LeftShift)) {
@@ -54,7 +55,6 @@ public class LeapLivingParticleController : MonoBehaviour {
                 }
             }
             */
-            this.psr.material.SetVector("_Affector", this.affector.position);
         }
     }
 }
