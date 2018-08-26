@@ -5,7 +5,7 @@ using UnityEngine;
 public class LeapLivingParticleController : MonoBehaviour {
 
     public Transform affector;
-    //public Transform eyes;
+    public Transform eyes; //usually the object "AR headset Halo Small BOE unity optimized Rev 2 internal rigel"
     private ParticleSystemRenderer psr;
 
 	void Start () {
@@ -18,7 +18,8 @@ public class LeapLivingParticleController : MonoBehaviour {
 
     private void setAffectorPosition()
     {
-        if (this.affector != null) {
+        if (this.affector != null)
+        {
             if (Input.GetKey(KeyCode.W)) {
                 this.affector.position += new Vector3(0, 0, 0.02f);
             }
@@ -32,29 +33,31 @@ public class LeapLivingParticleController : MonoBehaviour {
                 this.affector.position += new Vector3(-0.02f, 0, 0);
             }
             this.psr.material.SetVector("_Affector", this.affector.position);
-            /*
-            else if (Input.GetKey(KeyCode.J)) {
-                if (Input.GetKey(KeyCode.LeftShift)) {
-                    this.eyes.Rotate(new Vector3(-0.02f, 0, 0));
+        }
+
+        if (this.eyes != null) {
+            float rotateRate = 0.1f;
+            if (Input.GetKey(KeyCode.J)) {
+                if (Input.GetKey(KeyCode.RightShift)) {
+                    this.eyes.Rotate(new Vector3(rotateRate, 0, 0));
                 } else {
-                    this.eyes.Rotate(new Vector3(0.02f, 0, 0));
+                    this.eyes.Rotate(new Vector3(-rotateRate, 0, 0));
                 }
             }
             else if (Input.GetKey(KeyCode.K)) {
-                if (Input.GetKey(KeyCode.LeftShift)) {
-                    this.eyes.Rotate(new Vector3(0, -0.02f, 0));
+                if (Input.GetKey(KeyCode.RightShift)) {
+                    this.eyes.Rotate(new Vector3(0, rotateRate, 0));
                 } else {
-                    this.eyes.Rotate(new Vector3(0, 0.02f, 0));
+                    this.eyes.Rotate(new Vector3(0, -rotateRate, 0));
                 }
             }
             else if (Input.GetKey(KeyCode.L)) {
-                if (Input.GetKey(KeyCode.LeftShift)) {
-                    this.eyes.Rotate(new Vector3(0, 0, -0.02f));
+                if (Input.GetKey(KeyCode.RightShift)) {
+                    this.eyes.Rotate(new Vector3(0, 0, rotateRate));
                 } else {
-                    this.eyes.Rotate(new Vector3(0, 0, 0.02f));
+                    this.eyes.Rotate(new Vector3(0, 0, -rotateRate));
                 }
             }
-            */
         }
     }
 }
